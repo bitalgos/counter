@@ -1,10 +1,26 @@
 count=0
+def save_number(count):
+    with open("nums.txt", "w") as file:
+        file.write(str(count))  
+def write_number():
+    try:
+        with open("nums.txt", "r") as file:
+            return int(file.read()) 
+    except FileNotFoundError:
+        return 0
 print(f"Current number: {count}")
 while True:
-    user_input = input("Enter - count next number (press 'r' to restart): ")
-    if user_input.lower() == 'r':
+    u_input = input("Enter - count next number (press 'r' to restart, 's' to save, 'w' to load): ")
+    if u_input.lower() == 'r':
         count = 0  
         print(f"Restart counter. Current number: {count}")
+    elif u_input.lower() == 'w': 
+        count=write_number()  
+        print(f"loaded: {count}")
+    elif u_input.lower() == 's':
+        print(f"Saved: {count}")
+        save_number(count)
     else:
         count+=1 
         print(f"Current number: {count}")
+#bitalgos
